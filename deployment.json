@@ -5,7 +5,7 @@
          "Type" : "AWS::RDS::DBSubnetGroup",
          "Properties" : {
             "DBSubnetGroupDescription" : "description",
-            "SubnetIds" : ["subnet-6186172a", "subnet-b182569e"],
+            "SubnetIds" : ["subnet-532cd83b", "subnet-26a58e5d"],
             "Tags" : [ {"Key" : "String", "Value" : "String"} ]
          }
       },
@@ -13,7 +13,7 @@
    "Type" : "AWS::EC2::SecurityGroup",
    "Properties" : {
       "GroupDescription" : "Allow http to client host",
-      "VpcId" : "vpc-dd2fbea5",
+      "VpcId" : "vpc-b4aa4adc",
       "SecurityGroupIngress" : [{
             "IpProtocol" : "tcp",
             "FromPort" : "80",
@@ -32,7 +32,7 @@
    "Type" : "AWS::EC2::SecurityGroup",
    "Properties" : {
       "GroupDescription" : "Allow http to client host",
-      "VpcId" : "vpc-dd2fbea5",
+      "VpcId" : "vpc-b4aa4adc",
       "SecurityGroupIngress" : [{
             "IpProtocol" : "tcp",
             "FromPort" : "3306",
@@ -65,7 +65,7 @@
   "ElasticLoadBalancer" : {
   "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
   "Properties" : {
-    "Subnets" : ["subnet-6186172a", "subnet-b182569e"],
+    "Subnets" : ["subnet-532cd83b", "subnet-26a58e5d"],
 	"SecurityGroups": [ { "Ref": "lbsg" } ],
     "Listeners" : [ {
       "LoadBalancerPort" : "80",
@@ -90,7 +90,7 @@
     "ContainerDefinitions" : [
     {
       "Name": "frontend",
-      "Image":"mohanraz/frontend:latest",
+      "Image":"vijayinfotron/vjfrontend:latest",
       "Cpu": "1",
       "PortMappings":[
         {
@@ -104,7 +104,7 @@
     },
     {
       "Name": "backend",
-      "Image": "mohanraz/backend:latest",
+      "Image": "vijayinfotron/vjbackend:latest",
       "Cpu": "1",
       "Memory": "300",
       "Essential" : "true",
@@ -116,7 +116,7 @@
 "WebApp": {
   "Type": "AWS::ECS::Service",
   "Properties" : {
-    "Cluster": "threetier",
+    "Cluster": "vijayclustor ",
     "DesiredCount": 4,
     "TaskDefinition" : { "Ref": "taskdefinition" },
         "LoadBalancers" : [{
